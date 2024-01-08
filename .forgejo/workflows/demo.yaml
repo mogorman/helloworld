@@ -20,3 +20,15 @@ jobs:
         run: |
           elixir --eval "IO.puts(\"hello\")"
       - run: echo "This job's status is ${{ job.status }}."
+
+  upload-one:
+    runs-on: flakes-action
+    steps:
+    - run: mkdir -p path/
+
+    - run: echo hello > path/world.txt
+
+    - uses: actions/upload-artifact@v3
+      with:
+        name: my-artifact
+        path: path/world.txt
